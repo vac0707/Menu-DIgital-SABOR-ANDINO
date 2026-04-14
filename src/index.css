@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Georgia", serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  --color-andino-earth: #3E2723;
+  --color-andino-beige: #F5F2ED;
+  --color-andino-gold: #C5A059;
+  --color-andino-olive: #5A5A40;
+  --color-andino-cream: #FDFBF7;
+}
+
+@layer base {
+  body {
+    @apply bg-andino-beige text-andino-earth font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20;
+}
+
+.text-gold {
+  @apply text-andino-gold;
+}
+
+.bg-gold {
+  @apply bg-andino-gold;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-andino-beige;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-andino-gold/50 rounded-full;
+}
