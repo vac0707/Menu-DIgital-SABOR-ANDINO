@@ -153,42 +153,52 @@ const CategoryTabs = ({ activeCategory, setActiveCategory }: { activeCategory: s
   );
 };
 
-const ProductCard = ({ item }: { item: MenuItem }) => (
-  <div
-    className="bg-white rounded-2xl overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500 group border border-andino-earth/5 h-full"
-  >
-    <div className="relative h-56 overflow-hidden">
-      <img 
-        src={item.image} 
-        alt={item.name} 
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        referrerPolicy="no-referrer"
-      />
-      <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-        {item.labels?.map((label) => (
-          <span key={label} className="bg-andino-gold text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg">
-            {label}
-          </span>
-        ))}
+const ProductCard = ({ item }: { item: MenuItem }) => {
+  const whatsappMessage = `Hola, me gustaría ordenar el plato: *${item.name}* (S/ ${item.price.toFixed(2)}) desde el menú digital.`;
+  const whatsappUrl = `https://wa.me/51932350348?text=${encodeURIComponent(whatsappMessage)}`;
+
+  return (
+    <div
+      className="bg-white rounded-2xl overflow-hidden shadow-[0_4px_15px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500 group border border-andino-earth/5 h-full flex flex-col"
+    >
+      <div className="relative h-56 overflow-hidden">
+        <img 
+          src={item.image} 
+          alt={item.name} 
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+          {item.labels?.map((label) => (
+            <span key={label} className="bg-andino-gold text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md shadow-lg">
+              {label}
+            </span>
+          ))}
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+          <span className="text-white font-serif text-xl">S/ {item.price.toFixed(2)}</span>
+        </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-        <span className="text-white font-serif text-xl">S/ {item.price.toFixed(2)}</span>
+      <div className="p-6 flex flex-col flex-1">
+        <h3 className="text-xl font-serif mb-2 group-hover:text-andino-gold transition-colors">{item.name}</h3>
+        <p className="text-andino-earth/60 text-sm leading-relaxed mb-6 line-clamp-2 flex-1">
+          {item.description}
+        </p>
+        <div className="flex items-center justify-between mt-auto">
+          <span className="font-bold text-andino-olive">S/ {item.price.toFixed(2)}</span>
+          <a 
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-full border border-andino-olive text-andino-olive font-semibold text-xs uppercase tracking-widest hover:bg-andino-olive hover:text-white transition-all duration-300"
+          >
+            Ordenar
+          </a>
+        </div>
       </div>
     </div>
-    <div className="p-6">
-      <h3 className="text-xl font-serif mb-2 group-hover:text-andino-gold transition-colors">{item.name}</h3>
-      <p className="text-andino-earth/60 text-sm leading-relaxed mb-6 line-clamp-2">
-        {item.description}
-      </p>
-      <div className="flex items-center justify-between">
-        <span className="font-bold text-andino-olive">S/ {item.price.toFixed(2)}</span>
-        <button className="px-4 py-2 rounded-full border border-andino-olive text-andino-olive font-semibold text-xs uppercase tracking-widest hover:bg-andino-olive hover:text-white transition-all duration-300">
-          Ordenar
-        </button>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 const AboutUs = () => (
   <section className="py-20 px-6 bg-andino-earth text-andino-beige relative overflow-hidden">
